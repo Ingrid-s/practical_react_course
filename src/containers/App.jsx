@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import useInitialState from '../hooks/useInitialState';
 import '../assets/styles/App.scss';
 
-const API = 'http://localhost:3000/initalState';
+const API = 'http://localhost:3000/initialState';
 
 const App = () => {
     const initialState = useInitialState(API);
@@ -21,7 +21,9 @@ const App = () => {
 
             <Categories title="Mi lista">
                 <Carousel>
-                    <CarouselItem/>                                                                      
+                    {initialState.trends.map(item =>
+                        <CarouselItem key={item.id} {...item} />
+                    )}                                                                      
                 </Carousel>
             </Categories>
             }
@@ -33,16 +35,16 @@ const App = () => {
                 </Carousel>
             </Categories>
 
-            <Categories title="Originale de platzi">
+            <Categories title="Originales de Platzi">
                 <Carousel>
-                    <CarouselItem/>
-                                                                 
+                    {initialState.trends.map(item =>
+                        <CarouselItem key={item.id} {...item} />
+                    )}                                                            
                 </Carousel>
             </Categories>
 
             <Footer />
         </div>
-
     )
 };
 export default App;
